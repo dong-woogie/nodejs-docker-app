@@ -1,11 +1,15 @@
-FROM node:12
+FROM node:12 as builder
 
-WORKDIR /the/workdir/path
+WORKDIR '/usr/src/app'
 
-COPY package.json ./
+COPY package.json .
 
 RUN npm install
 
 COPY ./ ./
 
-CMD ["node", "server.js"]
+RUN npm run build
+
+FROM nginx
+EXPOSE 80
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
