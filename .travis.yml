@@ -13,6 +13,7 @@ script:
   - docker run -e CI=true dong-woogie/docker-react-app npm run test -- --coverage
 
 deploy:
+  edge: true
   provider: elasticbeanstalk
   region: ap-northeast-2
   app: docker-react-app
@@ -20,6 +21,6 @@ deploy:
   bucket_name: elasticbeanstalk-ap-northeast-2-785720007930
   bucket_path: docker-react-app
   on:
-    branch: master
+    branch: main
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_ACCESS_KEY
