@@ -21,6 +21,10 @@ deploy:
   bucket_name: elasticbeanstalk-ap-northeast-2-785720007930
   bucket_path: docker-react-app
   on:
-    branch: main
+    repo: dong-woogie/nodejs-docker-app
+    branches:
+      only:
+        - master
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_ACCESS_KEY"
